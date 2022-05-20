@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test1/countrylist_cubit.dart';
+import 'addfield.dart';
 import 'country.dart';
 
 class CountryList extends StatelessWidget {
@@ -25,28 +26,7 @@ class CountryList extends StatelessWidget {
                             .removeCountry(country.name))
             ]));
       })),
-      BlocBuilder<CountrylistCubit, List<Country>>(builder: (context, state) {
-        return Container(
-            height: 50,
-            child: TextField(
-              controller: myController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Name',
-                suffixIcon: IconButton(
-                  onPressed: context.read<CountrylistCubit>().addCubitCountry,
-                  icon: Icon(Icons.add),
-                ),
-              ),
-              obscureText: false,
-            ));
-      })
+      AddField()
     ]);
-  }
-
-  addCountry() {
-    Country countrys;
-    countrys = Country(myController.text, "assets/placeholder.png");
-    return countrys;
   }
 }
